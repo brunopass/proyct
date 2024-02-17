@@ -1,0 +1,28 @@
+@import "@/styles/variables.scss";
+.ds-component {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100%;
+  justify-items: center;
+  align-items: center;
+  gap: 4px;
+  & * {
+    cursor: grab !important;
+  }
+
+  &__preview {
+    width: 100%;
+    background-color: $gray-100;
+    border-radius: 6px;
+    border: 1px solid $gray-200;
+    height: 60px;
+    width: 82px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & > label {
+    font-size: 13px;
+    color: $gray-800;
+  }
+}

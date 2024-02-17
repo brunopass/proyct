@@ -1,0 +1,11 @@
+@import "@/styles/_variables.scss";
+
+.ds-sidebar {
+  display: grid;
+  grid-template-columns: 84px 388px;
+  min-height: 100vh;
+  height: max-content;
+  width: 472px;
+  border-right: 1px solid $gray-300;
+  background-color: $gray-25;
+}

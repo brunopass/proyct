@@ -1,0 +1,11 @@
+@import "@/styles/_variables.scss";
+
+.ds-toolbar {
+  width: 100%;
+  min-height: 100vh;
+  height: max-content;
+  background-color: $primary;
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 14px;
+}

@@ -1,0 +1,14 @@
+.ds-layout {
+  display: grid;
+  grid-template-columns: 472px auto;
+  & > main {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-items: flex-start;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
+    height: max-content;
+    min-height: 100vh;
+  }
+}

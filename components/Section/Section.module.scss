@@ -1,0 +1,15 @@
+@import "@/styles/variables.scss";
+
+.ds-section {
+  width: 100%;
+  border-bottom: 1px solid $gray-200;
+  display: grid;
+  justify-items: flex-start;
+  align-items: flex-start;
+  padding: 14px;
+  gap: 14px;
+  & > h4 {
+    color: $gray-900;
+    font-weight: 500;
+  }
+}

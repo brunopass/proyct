@@ -1,0 +1,11 @@
+@import "@/styles/variables.scss";
+
+.ds-canva {
+  width: 1024px;
+  max-width: calc(100% - 14px);
+  height: max-content;
+  min-height: 100vh;
+  background-color: $white;
+  border: 1px solid $gray-25;
+  border-radius: 6px 6px 0 0;
+}

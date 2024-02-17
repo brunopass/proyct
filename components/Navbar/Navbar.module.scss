@@ -1,0 +1,9 @@
+@import "@/styles/variables.scss";
+
+.ds-navbar {
+  width: 100%;
+  background-color: $gray-50;
+  height: 61px;
+  border-bottom: 1px solid $gray-300;
+  padding: 14px;
+}
