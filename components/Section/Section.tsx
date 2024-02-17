@@ -6,7 +6,7 @@ export default function Section(props: SectionProps) {
   return (
     <section className={s["ds-section"]}>
       <h4>{props.title}</h4>
-      <div>
+      <div className={s["ds-section__grid"]}>
         {props.components.map((component) => (
           <Component key={component?.id} {...component} />
         ))}

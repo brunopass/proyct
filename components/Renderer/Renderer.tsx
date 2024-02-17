@@ -6,6 +6,7 @@ export default function Renderer(props: ComponentProps) {
   const RenderItem = useMemo(() => {
     //   @ts-ignore
     const item: JSX.Element = ComponentsIndex[props.seed][props.tag];
+
     if (props.children.length > 0) {
       return React.cloneElement(item, {
         ...props.props,
@@ -13,14 +14,11 @@ export default function Renderer(props: ComponentProps) {
           <Renderer {...component} />
         )),
       });
-    }
-    if (typeof props?.props?.content === "string") {
+    } else {
       return React.cloneElement(item, {
         ...props.props,
         children: props?.props?.content,
       });
-    } else {
-      return item;
     }
   }, [props]);
   return <div>{RenderItem}</div>;

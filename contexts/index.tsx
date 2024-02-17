@@ -2,6 +2,9 @@ import { ConfigProvider } from "antd";
 import { ReactNode } from "react";
 import { ComponentsProvider } from "./components.context";
 
+import { ChakraBaseProvider, theme as chakraTheme } from "@chakra-ui/react";
+import { PagesProvider } from "./pages.context";
+
 export type ProvidersProps = { children: ReactNode };
 export default function Providers(props: ProvidersProps) {
   return (
@@ -18,7 +21,11 @@ export default function Providers(props: ProvidersProps) {
         },
       }}
     >
-      <ComponentsProvider>{props.children}</ComponentsProvider>
+      <ChakraBaseProvider theme={chakraTheme}>
+        <ComponentsProvider>
+          <PagesProvider>{props.children}</PagesProvider>
+        </ComponentsProvider>
+      </ChakraBaseProvider>
     </ConfigProvider>
   );
 }

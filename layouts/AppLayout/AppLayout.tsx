@@ -12,6 +12,7 @@ export default function AppLayout(props: AppLayoutProps) {
   return (
     <div className={s["ds-layout"]}>
       <Sidebar />
+      <div />
       <main>
         <Navbar />
         {props.children}

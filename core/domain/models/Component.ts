@@ -1,6 +1,6 @@
 export type Component = {
   id: string;
-  seed: "HTML" | "ANTD";
+  seed: "HTML" | "ANTD" | "CHAKRA";
   tag: string;
   props: any;
   children: Array<Component>;

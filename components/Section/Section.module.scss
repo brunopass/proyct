@@ -12,4 +12,13 @@
     color: $gray-900;
     font-weight: 500;
   }
+
+  &__grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: flex-start;
+    gap: 8px;
+    align-items: flex-start;
+  }
 }
