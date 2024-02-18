@@ -17,6 +17,26 @@ export const FetchSections = async (): Promise<Array<Section>> => {
           name: "Text",
         },
         {
+          id: "antd-row",
+          seed: "ANTD",
+          props: {
+            content: "Row",
+          },
+          tag: "row",
+          children: [],
+          name: "Row",
+        },
+        {
+          id: "antd-col",
+          seed: "ANTD",
+          props: {
+            content: "Col",
+          },
+          tag: "col",
+          children: [],
+          name: "Column",
+        },
+        {
           id: "antd-switch",
           seed: "ANTD",
           props: {},

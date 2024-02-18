@@ -4,6 +4,7 @@ import { ComponentsProvider } from "./components.context";
 
 import { ChakraBaseProvider, theme as chakraTheme } from "@chakra-ui/react";
 import { PagesProvider } from "./pages.context";
+import { BuilderProvider } from "./builder.context";
 
 export type ProvidersProps = { children: ReactNode };
 export default function Providers(props: ProvidersProps) {
@@ -23,7 +24,9 @@ export default function Providers(props: ProvidersProps) {
     >
       <ChakraBaseProvider theme={chakraTheme}>
         <ComponentsProvider>
-          <PagesProvider>{props.children}</PagesProvider>
+          <PagesProvider>
+            <BuilderProvider>{props.children}</BuilderProvider>
+          </PagesProvider>
         </ComponentsProvider>
       </ChakraBaseProvider>
     </ConfigProvider>

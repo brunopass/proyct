@@ -1,6 +1,6 @@
 import { Component as ComponentProps } from "@/core/domain/models/Component";
 import { ComponentsIndex } from "./utils";
-import React, { ReactNode, useMemo } from "react";
+import React, { useMemo } from "react";
 
 export default function Renderer(props: ComponentProps) {
   const RenderItem = useMemo(() => {
@@ -21,5 +21,5 @@ export default function Renderer(props: ComponentProps) {
       });
     }
   }, [props]);
-  return <div>{RenderItem}</div>;
+  return RenderItem;
 }

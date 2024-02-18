@@ -12,17 +12,22 @@ import {
   Rate as AntdRate,
   Card as AntdCard,
   Segmented as AntdSegmented,
+  Row as AntdRow,
+  Col as AntdCol,
 } from "antd";
 import { Button as ChakraButton } from "@chakra-ui/react";
 
 export const ComponentsIndex = {
   HTML: {
+    body: <body />,
     div: <div />,
     span: <span />,
     p: <p />,
   },
   ANTD: {
     text: <AntdText />,
+    row: <AntdRow />,
+    col: <AntdCol />,
     button: <AntdButton />,
     input: <AntdInput />,
     radio: <AntdRadio />,

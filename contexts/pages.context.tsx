@@ -12,6 +12,7 @@ import {
 export type PagesContextProps = {
   pages: Array<Page>;
   currentPageId: string;
+  currentPage?: Page;
   setCurrentPageId: Dispatch<string>;
 };
 export const PagesContext = createContext<PagesContextProps>(
@@ -22,16 +23,22 @@ export const PagesContext = createContext<PagesContextProps>(
 export type PagesProviderProps = { children: ReactNode };
 export function PagesProvider(props: PagesProviderProps) {
   const [pages, setPages] = useState<Array<Page>>([]);
+  const [currentPage, setCurrentPage] = useState<Page>();
   const [currentPageId, setCurrentPageId] = useState<string>("");
 
   useEffect(() => {
     handleFetchPages();
   }, []);
 
+  useEffect(() => {
+    setCurrentPage(pages.find((page) => page.id === currentPageId));
+  }, [currentPageId]);
+
   const handleFetchPages = async () => {
     try {
       const pages = await FetchPages();
       setPages(pages);
+
       setCurrentPageId(pages[0].id);
     } catch (err) {
       console.log(err);
@@ -41,6 +48,7 @@ export function PagesProvider(props: PagesProviderProps) {
   const context = {
     pages,
     currentPageId,
+    currentPage,
     setCurrentPageId,
   };
   return (
