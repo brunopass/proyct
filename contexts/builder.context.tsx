@@ -8,6 +8,8 @@ import {
   useEffect,
   useState,
 } from "react";
+import { usePages } from "./pages.context";
+import { useComponents } from "./components.context";
 
 export type BuilderContextProps = {
   currentBlockId: string;
@@ -23,6 +25,8 @@ export type BuilderProviderProps = {
   children: ReactNode;
 };
 export function BuilderProvider(props: BuilderProviderProps) {
+  const { insertElement } = usePages();
+  const { components } = useComponents();
   const [componentDragged, setComponentDragged] = useState<Component | null>(
     null
   );
@@ -31,27 +35,41 @@ export function BuilderProvider(props: BuilderProviderProps) {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [currentBlockId, setCurrentBlockId] = useState<string>("");
 
-  const onDrag = (component: Component) => {
-    setIsDragging(true);
-    setComponentDragged(component);
-  };
-
-  const context = { setCurrentBlockId, currentBlockId, onDrag };
-
-  //   useEffect(() => {
-  //     console.log({ ...mousePosition, mouseDown, isDragging, componentDragged });
-  //   }, [mousePosition, mouseDown, isDragging, componentDragged]);
-
   useEffect(() => {
-    if (!mouseDown) {
+    if (!mouseDown && componentDragged && isDragging) {
+      if (currentBlockId) {
+        const component = {
+          ...componentDragged,
+          id: Date.now().toString(),
+        };
+        insertElement(currentBlockId, component);
+      }
       setIsDragging(false);
       setComponentDragged(null);
+      setCurrentBlockId("");
     }
-  }, [mouseDown]);
+  }, [mouseDown, currentBlockId]);
+
+  useEffect(() => {
+    console.log(currentBlockId);
+  }, [currentBlockId]);
 
   const handleMouseMove = (event: any) => {
     const { clientX, clientY } = event;
     setMousePosition({ x: clientX, y: clientY });
+  };
+
+  const onDrag = (component: Component) => {
+    setIsDragging(true);
+
+    // @ts-ignore
+    setComponentDragged(components[component.id]);
+  };
+
+  const context = {
+    setCurrentBlockId,
+    currentBlockId,
+    onDrag,
   };
 
   return (
@@ -66,13 +84,16 @@ export function BuilderProvider(props: BuilderProviderProps) {
           <div
             style={{
               zIndex: 999999,
-              position: "fixed",
+              position: "absolute",
               top: 0,
               left: 0,
-              transform: `translateX(${mousePosition?.x}px) translateY(${mousePosition?.y}px)`,
+              transform: `translateX(${mousePosition?.x + 5}px) translateY(${
+                window.scrollY + mousePosition?.y
+              }px)`,
             }}
+            key={componentDragged?.id}
           >
-            <Renderer {...componentDragged} />
+            <Renderer key={componentDragged?.id} {...componentDragged} />
           </div>
         )}
         {props.children}

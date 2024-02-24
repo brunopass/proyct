@@ -5,4 +5,5 @@ export type Component = {
   props: any;
   children: Array<Component>;
   name?: string;
+  container: boolean;
 };

@@ -2,7 +2,6 @@ import s from "./Canva.module.scss";
 import { Component as ComponentProps } from "@/core/domain/models/Component";
 import { ComponentsIndex } from "./utils";
 import React, { useMemo } from "react";
-import { PlusCircle } from "react-feather";
 import { useBuilder } from "@/contexts/builder.context";
 
 export default function CanvaRenderer(props: ComponentProps) {
@@ -15,7 +14,7 @@ export default function CanvaRenderer(props: ComponentProps) {
       return React.cloneElement(item, {
         ...props.props,
         children: props.children.map((component) => (
-          <CanvaRenderer {...component} />
+          <CanvaRenderer key={component?.id} {...component} />
         )),
       });
     } else {
@@ -28,7 +27,7 @@ export default function CanvaRenderer(props: ComponentProps) {
 
   return (
     <div
-      key={props.id}
+      key={Date.now().toString() + props.id}
       style={props.tag === "body" ? { width: "100%", minHeight: "100vh" } : {}}
       onClick={(e) => {
         e.stopPropagation();
@@ -36,26 +35,17 @@ export default function CanvaRenderer(props: ComponentProps) {
       }}
       onMouseOver={(e) => {
         e.stopPropagation();
-        console.log(props.id);
-        setCurrentBlockId(props.id);
+        props.container && setCurrentBlockId(props.id);
+      }}
+      onMouseOut={(e) => {
+        e.stopPropagation();
+        props.container && setCurrentBlockId("");
       }}
       className={s["ds-canva-renderer"]}
     >
       {currentBlockId === props.id && (
         <>
-          <div
-            className={`${s["ds-canva-renderer-add"]} ${s["ds-canva-renderer-add--1"]}`}
-          ></div>
-          <div
-            className={`${s["ds-canva-renderer-add"]} ${s["ds-canva-renderer-add--2"]}`}
-          ></div>
-
-          <div
-            className={`${s["ds-canva-renderer-add"]} ${s["ds-canva-renderer-add--3"]}`}
-          ></div>
-          <div
-            className={`${s["ds-canva-renderer-add"]} ${s["ds-canva-renderer-add--4"]}`}
-          ></div>
+          <div className={`${s["ds-canva-renderer-dropzone"]}`}></div>
         </>
       )}
       {RenderItem}

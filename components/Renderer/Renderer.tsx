@@ -3,23 +3,17 @@ import { ComponentsIndex } from "./utils";
 import React, { useMemo } from "react";
 
 export default function Renderer(props: ComponentProps) {
-  const RenderItem = useMemo(() => {
-    //   @ts-ignore
-    const item: JSX.Element = ComponentsIndex[props.seed][props.tag];
-
-    if (props.children.length > 0) {
-      return React.cloneElement(item, {
-        ...props.props,
-        children: props.children.map((component) => (
-          <Renderer {...component} />
-        )),
-      });
-    } else {
-      return React.cloneElement(item, {
-        ...props.props,
-        children: props?.props?.content,
-      });
-    }
-  }, [props]);
-  return RenderItem;
+  // @ts-ignore
+  const item: JSX.Element = ComponentsIndex[props.seed][props.tag];
+  if (props.children.length > 0) {
+    return React.cloneElement(item, {
+      ...props.props,
+      children: props.children.map((component) => <Renderer {...component} />),
+    });
+  } else {
+    return React.cloneElement(item, {
+      ...props.props,
+      children: props?.props?.content,
+    });
+  }
 }

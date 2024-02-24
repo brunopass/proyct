@@ -9,41 +9,12 @@
   background: transparent;
   z-index: 999;
   position: relative;
-  &-add {
+  &-dropzone {
     position: absolute;
-
-    z-index: 99;
-
-    &--1 {
-      top: 0;
-      z-index: 99 !important;
-      transform: translateY(-10px);
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    &--2 {
-      left: 0;
-      z-index: 99 !important;
-      transform: translateY(10px);
-      height: inherit !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    &--3 {
-      bottom: 0;
-      z-index: 99 !important;
-      transform: translateY(10px);
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    &--4 {
-      top: 50%;
-      right: 0;
-    }
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    margin: 2px;
+    // background-color: aqua;
+    // z-index: 99;
   }
 }

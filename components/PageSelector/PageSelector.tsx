@@ -9,6 +9,7 @@ export default function PageSelector(props: PageSelectorProps) {
       <Space>
         {pages.map((page) => (
           <Button
+            key={page.path}
             htmlType="button"
             onClick={() => setCurrentPageId(page.id)}
             type={page.id === currentPageId ? "primary" : "default"}

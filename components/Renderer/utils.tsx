@@ -19,7 +19,7 @@ import { Button as ChakraButton } from "@chakra-ui/react";
 
 export const ComponentsIndex = {
   HTML: {
-    body: <body />,
+    body: <div />,
     div: <div />,
     span: <span />,
     p: <p />,

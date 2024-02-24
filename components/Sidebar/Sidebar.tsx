@@ -10,6 +10,7 @@ export type SidebarProps = {};
 export default function Sidebar(props: SidebarProps) {
   const { t } = useTranslation("common");
   const { sections } = useComponents();
+
   return (
     <aside className={s["ds-sidebar"]}>
       <Toolbar />
@@ -20,7 +21,7 @@ export default function Sidebar(props: SidebarProps) {
         <Divider style={{ margin: 0, backgroundColor: "#eaecf0" }} />
         <div>
           {sections.map((section) => (
-            <Section {...section} />
+            <Section key={section.id} {...section} />
           ))}
         </div>
       </section>

@@ -10,10 +10,9 @@ export default function Canva(props: CanvaProps) {
 
   return (
     <section className={s["ds-canva"]}>
-      {currentPage &&
-        currentPage?.structure?.map((component) => (
-          <CanvaRenderer {...component} />
-        ))}
+      {currentPage && (
+        <CanvaRenderer key={currentPage?.id} {...currentPage?.structure} />
+      )}
     </section>
   );
 }
