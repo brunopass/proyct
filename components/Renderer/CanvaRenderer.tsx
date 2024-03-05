@@ -1,11 +1,15 @@
 import s from "./Canva.module.scss";
 import { Component as ComponentProps } from "@/core/domain/models/Component";
 import { ComponentsIndex } from "./utils";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useBuilder } from "@/contexts/builder.context";
+import { useTool } from "@/contexts/tool.context";
 
 export default function CanvaRenderer(props: ComponentProps) {
-  const { setCurrentBlockId, currentBlockId } = useBuilder();
+  const [selectable, setSelectable] = useState<boolean>(false);
+  const [componentId, setComponentId] = useState(props.id);
+  const { setCurrentBlockId } = useBuilder();
+  const { selectComponent } = useTool();
   const RenderItem = useMemo(() => {
     //   @ts-ignore
     const item: JSX.Element = ComponentsIndex[props.seed][props.tag];
@@ -27,27 +31,32 @@ export default function CanvaRenderer(props: ComponentProps) {
 
   return (
     <div
-      key={Date.now().toString() + props.id}
+      key={componentId}
       style={props.tag === "body" ? { width: "100%", minHeight: "100vh" } : {}}
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
+        selectComponent(props);
+      }}
+      draggable
+      onDragStart={() => {
+        setComponentId(Date.now().toString());
+        // onDrag({ ...props });
       }}
       onMouseOver={(e) => {
         e.stopPropagation();
+        setSelectable(true);
         props.container && setCurrentBlockId(props.id);
       }}
       onMouseOut={(e) => {
         e.stopPropagation();
+        setSelectable(false);
         props.container && setCurrentBlockId("");
       }}
-      className={s["ds-canva-renderer"]}
+      className={`${s["ds-canva-renderer"]} ${
+        selectable ? s["ds-canva-renderer--selectable"] : ""
+      }`}
     >
-      {currentBlockId === props.id && (
-        <>
-          <div className={`${s["ds-canva-renderer-dropzone"]}`}></div>
-        </>
-      )}
       {RenderItem}
     </div>
   );

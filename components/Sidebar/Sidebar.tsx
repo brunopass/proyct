@@ -13,11 +13,7 @@ export default function Sidebar(props: SidebarProps) {
 
   return (
     <aside className={s["ds-sidebar"]}>
-      <Toolbar />
       <section>
-        <Row style={{ padding: 14 }} align="middle" justify="center">
-          <Input placeholder={t("sidebar.placeholder")} />
-        </Row>
         <Divider style={{ margin: 0, backgroundColor: "#eaecf0" }} />
         <div>
           {sections.map((section) => (

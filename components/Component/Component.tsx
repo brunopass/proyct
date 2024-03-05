@@ -27,7 +27,9 @@ export default function Component(props: ComponentProps) {
           className={s["ds-component__preview"]}
           onMouseOver={(e) => e.stopPropagation()}
         >
-          <Renderer key={props.id} {...props} />
+          <div>
+            <Renderer key={props.id} {...props} />
+          </div>
         </div>
 
         <label>{props?.name}</label>

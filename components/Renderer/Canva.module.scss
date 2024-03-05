@@ -5,16 +5,11 @@
     cursor: pointer;
   }
   height: 100%;
-  width: 100%;
+  width: max-content;
   background: transparent;
   z-index: 999;
   position: relative;
-  &-dropzone {
-    position: absolute;
-    width: calc(100% - 4px);
-    height: calc(100% - 4px);
-    margin: 2px;
-    // background-color: aqua;
-    // z-index: 99;
+  &--selectable {
+    outline: 1px solid #1791ea;
   }
 }

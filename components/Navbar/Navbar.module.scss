@@ -1,17 +1,17 @@
 @import "@/styles/variables.scss";
 
 .ds-navbar {
-  width: 100%;
-  background-color: $gray-50;
-  height: 61px;
+  background-color: $gray-25;
+  height: 49px;
   border-bottom: 1px solid $gray-300;
-  padding: 14px;
+  padding: 8px 0px;
   position: fixed;
   top: 0;
+  width: 100%;
+  padding-right: 14px;
   z-index: 99;
   &__container {
-    width: 1038px;
-    max-width: calc(100% - 72px);
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;

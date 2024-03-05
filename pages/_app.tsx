@@ -8,6 +8,7 @@ import { ConfigProvider } from "antd";
 import { ComponentsProvider } from "@/contexts/components.context";
 import { PagesProvider } from "@/contexts/pages.context";
 import { BuilderProvider } from "@/contexts/builder.context";
+import { ToolProvider } from "@/contexts/tool.context";
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,7 +21,6 @@ function App({ Component, pageProps }: AppProps) {
           borderRadiusXS: 4,
           borderRadiusLG: 8,
           borderRadiusOuter: 10,
-          motion: false,
         },
       }}
     >
@@ -28,9 +28,11 @@ function App({ Component, pageProps }: AppProps) {
         <ComponentsProvider>
           <PagesProvider>
             <BuilderProvider>
-              <AppLayout>
-                <Component {...pageProps} />
-              </AppLayout>
+              <ToolProvider>
+                <AppLayout>
+                  <Component {...pageProps} />
+                </AppLayout>
+              </ToolProvider>
             </BuilderProvider>
           </PagesProvider>
         </ComponentsProvider>
